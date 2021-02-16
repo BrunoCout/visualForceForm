@@ -1,0 +1,62 @@
+public class dreamhouse_controller {
+    
+    //Defining variable
+    
+    public integer bedrooms {get; set;}
+    public integer restrooms {get; set;}
+    public integer rooms {get; set;}
+    public integer kitchen {get; set;}
+    public integer garages {get; set;}
+    public integer price {get; set;}
+    public String propertyType {get; set;}
+    
+    //Picklist Method
+    
+    public List<SelectOption> getMyOptions(){
+        
+        Schema.DescribeFieldResult describeResult = Property__c.Property_Type__c.getDescribe(); 
+        
+        List<Schema.PicklistEntry> entries = describeResult.getPickListValues();
+        
+        List<SelectOption> optionsToReturn = new List<SelectOption>();
+        
+        for(Schema.PicklistEntry pEntry : entries){
+            
+            if(pEntry.isActive()){
+                
+                optionsToReturn.add(new SelectOption(pEntry.getValue(), pEntry.getLabel()));
+            }
+        }
+        return optionsToReturn;     
+    }
+    //Send Method
+    
+    public void sendproperty(){
+        
+        Property__c objproperties = new Property__c();
+        objproperties.Beds__c = bedrooms;
+        objproperties.Baths__c = restrooms;
+        objproperties.Kitchen__c = kitchen;
+        objproperties.Rooms__c = rooms;
+        objproperties.Garage__c = garages;
+        objproperties.Price__c = price;
+        objproperties.Property_Type__c = propertyType;
+        
+        try{
+            if(objproperties.Property_Type__c != 'None' && objproperties.Property_Type__c != null){
+                ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.CONFIRM, 'Property successfylly registered!!'));
+                insert objproperties;
+                bedrooms = null;
+                restrooms = null;
+                rooms = null;
+                garages = null;
+                price = null;
+                propertyType = null;
+            }else{
+                ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, 'Error!! the property field must be filled.'));
+            }
+        }catch(DmlException e){
+            ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, 'Please, verify all fields before send!!'));
+        } 
+    }
+}

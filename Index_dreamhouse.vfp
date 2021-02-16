@@ -1,0 +1,143 @@
+<apex:page controller="dreamhouse_controller"> 
+    <style>
+        #content{
+        margin-top:10%;
+        margin-left:10%;
+        margin-right:10%;
+        }
+        #form1{
+        width:500px;
+        }
+    </style>
+    <apex:slds />
+    <div id="content">
+        <center>
+            <div id="form1" class="slds-escope">
+                <article class="slds-card">
+                    <div class="slds-card__header">
+                        <h2 class="slds-card__header-title">
+                            <h1>
+                                <span><b>REGISTER PROPERTY</b></span>   
+                            </h1>
+                        </h2>
+                    </div>
+                    <div class="slds-card__body slds-card__body_inner slds-form-element__control">
+                        <apex:form >
+                            <apex:pageMessages id="showmessage"/>
+                            
+                            <table class="slds-table slds-table_bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="FIELDS">
+                                                FIELDS
+                                            </div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="AMOUNT">
+                                                AMOUNT
+                                            </div>
+                                        </th>
+                                    </tr>    
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th data-label="Bedrooms" scope="row">
+                                            <div class="slds-truncate" title="Bedrooms">
+                                                <label class="slds-form-element__label"><abbr class="slds-required" title="required">* </abbr>Bedrooms:</label> 
+                                            </div>
+                                        </th>
+                                        <td data-label="Bedrooms">
+                                            <div class="slds-truncate" title="Bedrooms">
+                                                <apex:inputText value="{!bedrooms}" styleClass="slds-input"/> 
+                                            </div>
+                                            
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th data-label="Restrooms" scope="row">
+                                            <div class="slds-truncate" title="Restrooms">
+                                                <label class="slds-form-element__label"><abbr class="slds-required" title="required">* </abbr>Restrooms:</label> 
+                                            </div>
+                                        </th>
+                                        <td data-label="Restrooms">
+                                            <div class="slds-truncate" title="Restrooms">
+                                                <apex:inputText value="{!restrooms}" styleClass="slds-input"/> 
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th data-label="Rooms" scope="row">
+                                            <div class="slds-truncate" title="Rooms">
+                                                <label class="slds-form-element__label"><abbr class="slds-required" title="required">* </abbr>Rooms:</label> 
+                                            </div>
+                                        </th>
+                                        <td data-label="Rooms">
+                                            <div class="slds-truncate" title="Rooms">
+                                                <apex:inputText value="{!rooms}" styleClass="slds-input"/> 
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th data-label="Kitchen" scope="row">
+                                            <div class="slds-truncate" title="Kitchen">
+                                                <label class="slds-form-element__label"><abbr class="slds-required" title="required">* </abbr>Kitchen:</label> 
+                                            </div>
+                                        </th>
+                                        <td data-label="Kitchen">
+                                            <div class="slds-truncate" title="Kitchen">
+                                                <apex:inputText value="{!kitchen}" styleClass="slds-input"/> 
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th data-label="Garages" scope="row">
+                                            <div class="slds-truncate" title="Garages">
+                                                <label class="slds-form-element__label"><abbr class="slds-required" title="required">* </abbr>Garages:</label> 
+                                            </div>
+                                        </th>
+                                        <td data-label="Garages">
+                                            <div class="slds-truncate" title="Garages">
+                                                <apex:inputText value="{!garages}" styleClass="slds-input"/> 
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th data-label="Price" scope="row">
+                                            <div class="slds-truncate" title="Price">
+                                                <label class="slds-form-element__label"><abbr class="slds-required" title="required">* </abbr>Price:</label> 
+                                            </div>
+                                        </th>
+                                        <td data-label="Price">
+                                            <div class="slds-truncate" title="Price">
+                                                <apex:inputText value="{!price}" styleClass="slds-input"/> 
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th data-label="PropertyType" scope="row">
+                                            <div class="slds-truncate" title="PropertyType">
+                                                <label class="slds-form-element__label"> <abbr class="slds-required" title="required">* </abbr>Property Type:</label> 
+                                            </div>
+                                        </th>
+                                        <td data-label="PropertyType">
+                                            <div class="slds-truncate" title="PropertyType">
+                                                <apex:selectList value="{!propertyType}" multiselect="false" size="1" required="true" styleClass="slds-input">
+                                                    <apex:selectOptions value="{!MyOptions}"/> 
+                                                </apex:selectList>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>          
+                            <div class="slds-card__footer">
+                                <apex:commandButton value="SEND PROPERTY" action="{!sendproperty}" styleClass="slds-button slds-button_success"/>  
+                            </div>
+                        </apex:form>                        
+                    </div>
+                </article>                
+            </div>
+        </center>
+    </div>  
+</apex:page>
